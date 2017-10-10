@@ -1,0 +1,38 @@
+﻿body {
+    height: 11in;
+    width: 8.5in;
+    margin-top: 1in;
+    margin-bottom: 1in;
+    margin-left: 0.75in;
+    margin-right: 0.625in;
+    padding: 8px;
+    border: 1px solid #4286f4;
+}
+
+p {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.2em;
+    text-align: justify;
+    text-indent: .5in;
+}
+
+h1{
+    color: darkblue;
+    font-size: 200%;
+}
+
+h2{
+    color: darkgreen;
+    font-size: 160%;
+}
+
+p.pIndent{
+    margin-left: .25in;
+    margin-right: .25in;
+    font-style: italic;
+    text-indent: 0px;
+}
+
+p code{
+    color: darkcyan;
+}
