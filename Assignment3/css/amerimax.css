@@ -1,51 +1,72 @@
 ﻿body {
     width: 1024px;
-    background-color:antiquewhite;
+    background-color: antiquewhite;
 }
-table.navMenu {
-    border-collapse: collapse;
+*{
+    font-family:Arial;
 }
-
-table.navMenu tr td {
-    /*Put texture here for the nav*/
-    background-color: whitesmoke;
-}
-
-p.menu {
-    text-align: center;
-    font-weight: bold;
-    white-space: nowrap;
-    padding: 10px;
-    font-size: 10px;
-    margin-right: 15px;
-    margin-left: 15px;
+div.Nav{
+    padding-top: 25px;
+    padding-bottom: 5px;
 }
 
-table.sideMenu {
-
+div.Nav *{
+    text-decoration: none;
+    font-size:12px;
 }
 
-table.sideMenu th {
-    background-color:black;
-    color: white;
-    font-size: 10px;
-    font-family: Arial;
-    font-weight: normal;
-    width: 100%;
-    height: 50px;
-    vertical-align: bottom;
+div.Menu a{
+    padding-top: 25px;
+    padding-left: 25px;
     padding-right: 25px;
-    padding-bottom: 10px;
+    padding-bottom: 14px;
+    text-decoration: none;
+    font-size: 14px;
+    text-align:right;
+    background-color:lightgray;
+}
+
+div.fMenu{
+    padding-top: 10px;
+}
+
+div.fMenu a{
+    text-decoration: none;
+    font-size: 12px;
+    color: white;
+}
+
+table.sideMenu th{
+    background-color: black;
+    color: white;
+    padding-top: 55px;
+    padding-right: 35px;
+    padding-left: 15px;
+    padding-bottom: 15px;
+    text-align:left;
+    font-weight:normal;
+    font-size: 14px;
 }
 
 table.sideMenu td {
-    vertical-align: middle;
-    font-family: Arial;
-    font-size: 8px;
     background-color: lightgray;
-    color: cornflowerblue;
-    padding: 7px;
-    padding-right: 10px;
+    padding-left: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 35px;
 }
 
+table.sideMenu td a{
+    text-decoration:none;
+    font-size: 12px;
+    color: lightgray;
+}
+
+ul.pFeatures{
+    padding-top: 15px;
+    padding-bottom: 55px;
+}
+ul.pFeatures li{
+    font-size: 13px;
+}
 
