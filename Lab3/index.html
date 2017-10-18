@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style type="text/css">
+        div {
+            background-color:aliceblue;
+            width: 1024px;
+            margin-left: auto;
+            margin-right: auto;
+            border: solid;
+            border-width: 2px;
+            border-radius: 25px;
+            padding: 25px;
+            font-family: 'Segoe UI', Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 13pt;
+            text-align: justify;
+        }
+        p.quirk{
+            width: 80%;
+            font-size: 0.8em;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        table {
+            border: solid;
+            border-width: 1px;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            width: 75%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: right;
+        }
+        table.SevenColumnTable{
+            text-align: center;
+        }
+        tr.SevenColumnRow{
+            height: 70px;
+        }
+        td.SevenColumnCell{
+            width: 50px;
+            background-color: honeydew;
+        }
+
+        td{
+            border: solid;
+            border-width: 1px;
+            padding-right: 5px;
+        }
+        caption{
+            font-size: 20pt;
+            background-color: darkblue;
+            color: lightgrey;
+        }
+        th{
+            border: solid;
+            border-width: 1px;
+            height: 45px;
+            padding-right: 5px;
+            vertical-align: bottom;
+        }
+    </style>
+</head>
+<body style="background-color: aliceblue">
+    <div>
+        <h1>CSS Lab Test Document</h1>
+        
+        <hr />
+        
+        <h2>Inheritance</h2>
+        <p>
+            <strong>Inheritance</strong> is the process by which properties are passed
+            from parent to child elements even though those properties have not been
+            explicitly defined by other means. Certain properties are inherited
+            automatically, and as the name implies, a child element will take on the
+            characteristics of its parent with regards to these properties.
+        </p>
+
+        <p class="quirk">Note that modern browsers operating in quirks mode behave 
+            a little buggily in that they don’t inherit certain properties into tables. 
+            This quirks mode behavior emulates the buggy behavior of much older browsers. 
+            Usually, these properties have to be specifically applied to the table 
+            element, although a better approach would be to avoid the issue altogether 
+            by using a doctype that causes the browser to use standards mode rendering. 
+        </p>
+
+        <p>
+            For example, if a <code>div</code> element has a <code>font-size</code> of
+            <code>20px</code> then, assuming that no other <code>font-size</code>
+            declarations have been explicitly defined, any children will also
+            inherit that <code>font-size</code> value. So there is no need to change it.
+        </p>
+
+        <hr />
+
+        <h2>Table Demo 1</h2>
+
+        <table>
+            <caption>Oraville Dam - water level and flow 2/17/2017</caption>
+                <tr>
+                    <th>Surface</th>
+                    <th>Acre Feet</th>
+                    <th>CFS Out</th>
+                    <th>CFS In</th>
+                </tr>
+            </>
+            <tbody>
+                <tr>
+                    <td>853.20</td>
+                    <td>2851504</td>
+                    <td>54974</td>
+                    <td>39610</td>
+                </tr>
+                <tr>
+                    <td>853.20</td>
+                    <td>2851504</td>
+                    <td>54974</td>
+                    <td>39610</td>
+                </tr>
+                <tr>
+                    <td>853.20</td>
+                    <td>2851504</td>
+                    <td>54974</td>
+                    <td>39610</td>
+                </tr>
+                <tr>
+                    <td>853.20</td>
+                    <td>2851504</td>
+                    <td>54974</td>
+                    <td>39610</td>
+                </tr>
+            </tbody>
+            <tfoot>
+
+            </tfoot>
+
+        </table>
+
+        <hr />
+        
+        <h2>Table Demo 2</h2>
+
+            <table class="SevenColumnTable">
+
+                <tr class="SevenColumnRow">
+                    <td class="SevenColumnCell">Col1</td>
+                    <td class="SevenColumnCell">Col2</td>
+                    <td class="SevenColumnCell">Col3</td>
+                    <td class="SevenColumnCell">Col4</td>
+                    <td class="SevenColumnCell">Col5</td>
+                    <td class="SevenColumnCell">Col6</td>
+                    <td class="SevenColumnCell">Col7</td>
+                </tr>
+            </table>
+
+    </div>
+
+</body>
+</html>
