@@ -1,0 +1,14 @@
+﻿body {
+}
+
+p em{
+    color:darkblue;
+    font-size: 12pt;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+p::first-letter{
+    font-size: 25pt;
+    font-family: Arial;
+}
