@@ -1,20 +1,22 @@
 ﻿body {
 }
 
-table{
+.head{
     margin: auto;
-    /*border-collapse: collapse;*/
+    background-color: #379683;
+
 }
 
-td{
-    border: 1px solid black;
+.Nav{
     padding-left: 50px;
     padding-right: 50px;
     padding-bottom: 15px;
     padding-top: 15px;
     font-family: Arial;
+    background-color: #5CDB95;
 }
 
 a{
     text-decoration: none;
+    color: #05386B;
 }

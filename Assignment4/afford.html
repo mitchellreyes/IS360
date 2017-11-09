@@ -3,8 +3,76 @@
 <head>
     <meta charset="utf-8" />
     <title>Afford</title>
+    <link rel="stylesheet" type="text/css" href="css/home.css" />
+
+    <script>
+        function myFunction() {
+            var gross = document.getElementById("monthIncome").value;
+            var totalExpense = document.getElementById("totalExpenses").value;
+            if (monthIncome == "" || totalExpense == "")
+            {
+                alert("Please enter in values for both fields before submitting.");
+            }
+            else
+            {
+                var monthIncome = gross * .29;
+                var expense = (gross - totalExpense) * .39; 
+                
+                if (monthIncome > expense) {
+                    document.getElementById("output").innerHTML = "Your maximum affordable payment (39%) is: $" + expense.toFixed(2);
+                }
+                else
+                {
+                    document.getElementById("output").innerHTML = "Your maximum affordable payment (29%) is: $" + monthIncome.toFixed(2);
+                }
+            }
+            
+        }
+    </script>
+
 </head>
 <body>
+    <hr />
+    <nav>
+        <table cellspacing="10" class="head">
+            <tr>
+                <td class="Nav"><a href="index.html">Home</a></td>
+                <td class="Nav"><a href="compoundInterest.html">Compound</a></td>
+                <td class="Nav"><a href="payment.html">Payment</a></td>
+            </tr>
+        </table>
+    </nav>
+    <hr />
 
+    <form>
+        <fieldset>
+            <legend>Inputs</legend>
+            <table>
+                <tr>
+                    <td style="text-align:right; font-family: Arial;">
+                        Monthly Income: <br />
+                        <input type="number" style="color:darkgrey; font-family: monospace;" id="monthIncome"/> <br />
+                    </td>
+                    <td style="text-align:right; font-family: Arial;">
+                        Total Expenses: <br />
+                        <input type="number" style="color:darkgrey; font-family: monospace;" id="totalExpenses"/>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" onclick="myFunction()">Submit</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align:right; font-weight: bold; color: darkblue; font-family: monospace;" id="output">
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+    <footer>
+        &copy; Mitchell Reyes | Sanya Gupta
+    </footer>
 </body>
 </html>
