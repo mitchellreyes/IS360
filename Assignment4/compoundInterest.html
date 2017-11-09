@@ -4,6 +4,28 @@
     <meta charset="utf-8" />
     <title>Compound Interest</title>
     <link rel="stylesheet" type="text/css" href="css/home.css" />
+
+    <script>
+        function myFunction() {
+            var amt = parseFloat(document.getElementById("initialInvestmentAmt").value);
+            var period = parseFloat(document.getElementById("numPeriods").value);
+            var rate = parseFloat(document.getElementById("intRatePerPeriod").value) / 100;
+
+            if (amt == "" || period == "" || rate == "") {
+                alert("Invalid info. Please fill out ALL fields.")
+            }
+            else
+            {
+                var total = amt;
+                var interest;
+                for (var i = 0; i < period; i++) {
+                    interest = total * rate;
+                    total += interest;
+                }
+                document.getElementById("output").innerHTML = "Payment amount: $" + total.toFixed(2);
+            }
+        }
+    </script>
 </head>
 <body>
     <hr />
@@ -17,5 +39,35 @@
         </table>
     </nav>
     <hr />
+    <form>
+        <fieldset>
+            <legend>Inputs</legend>
+            <table>
+                <tr>
+                    <td style="text-align:right; font-family: Arial;">
+                        Initial Investment Amount: <br />
+                        <input type="number" style="color:darkgrey; font-family: monospace;" id="initialInvestmentAmt" /> <br />
+                    </td>
+                    <td style="text-align:right; font-family: Arial;">
+                        Number of Periods: <br />
+                        <input type="number" style="color:darkgrey; font-family: monospace;" id="numPeriods" />
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td style="text-align:right; font-family: Arial;">
+                        Interest Rate Per Period: <br />
+                        <input type="number" style="color:darkgrey; font-family: monospace;" id="intRatePerPeriod" />
+                    </td>
+                    <td>
+                        <button type="button" onclick="myFunction()">Submit</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align:right; font-weight: bold; color: darkblue; font-family: monospace;" id="output"></td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
 </body>
 </html>
