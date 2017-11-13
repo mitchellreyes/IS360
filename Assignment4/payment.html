@@ -3,8 +3,73 @@
 <head>
     <meta charset="utf-8" />
     <title>Payment</title>
+    <link rel="stylesheet" type="text/css" href="css/home.css" />
+
+    <script>
+        function myFunction() {
+            var amt = parseFloat(document.getElementById("initLoanAmt").value);
+            var period = parseFloat(document.getElementById("numPeriods").value);
+            var rate = parseFloat(document.getElementById("intRatePerPeriod").value);
+
+            if (rate > 1) {
+                rate /= 100;
+            }
+
+            if (amt == "" || period == "" || rate == "") {
+                alert("Invalid info. Please fill out ALL fields.")
+            }
+            else {
+                var payment = (amt * (rate / 12)) / (1 - Math.pow((1 + (rate/12)), -(period * 12)));
+                document.getElementById("output").innerHTML = "Payment amount: $" + payment.toFixed(2);
+            }
+        }
+    </script>
+
 </head>
 <body>
+    <hr />
+    <nav>
+        <table cellspacing="10" class="head">
+            <tr>
+                <td class="Nav"><a href="index.html">Home</a></td>
+                <td class="Nav"><a href="afford.html">Afford</a></td>
+                <td class="Nav"><a href="compoundInterest.html">Compound</a></td>
+            </tr>
+        </table>
+    </nav>
+    <hr />
+    <form>
+        <fieldset>
+            <legend>Loan Payment Calculator</legend>
+            <table>
+                <tr>
+                    <td style="text-align:right; font-family: Arial;">
+                        Initial Loan Amount: <br />
+                        <input type="number" style="color:darkgrey; font-family: monospace;" id="initLoanAmt" /> <br />
+                    </td>
+                    <td style="text-align:right; font-family: Arial;">
+                        Number of Periods (Years): <br />
+                        <input type="number" style="color:darkgrey; font-family: monospace;" id="numPeriods" />
+                    </td>
 
+                </tr>
+                <tr>
+                    <td style="text-align:right; font-family: Arial;">
+                        Interest Rate (Years): <br />
+                        <input type="number" style="color:darkgrey; font-family: monospace;" id="intRatePerPeriod" />
+                    </td>
+                    <td>
+                        <button type="button" onclick="myFunction()">Submit</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align:right; font-weight: bold; color: darkblue; font-family: monospace;" id="output"></td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+    <footer>
+        &copy; Mitchell Reyes | Sanya Gupta
+    </footer>
 </body>
 </html>
