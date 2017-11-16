@@ -20,3 +20,7 @@ a{
     text-decoration: none;
     color: #05386B;
 }
+
+table{
+    border-spacing: 10px;
+}
