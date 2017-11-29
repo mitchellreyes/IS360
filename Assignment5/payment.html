@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset = "utf-8" />
+	<title> Assignment 5 </title>
+	<link rel="stylesheet" type = "text/css" href = "css/home.css" />
+	<script>
+	  function myFunction(){
+	    var loan_amt = parseFloat(document.getElementById("initLoanAmt").value);
+	    var ann_rate = parseFloat(document.getElementById("annIntRate").value);
+	    var loan_years = parseFloat(document.getElementById("loanYears").value);
+	    
+	    if(isNaN(loan_amt) || isNaN(ann_rate) || isNaN(loan_years)){
+	      alert("Invalid info. Please fill out all fields.");
+	    }
+	    else
+	    {
+	      ann_rate /= 100;
+	      ann_rate /= 12;
+	      var periods = loan_years * 12;
+	      var D = ((Math.pow(1 + ann_rate, periods)) - 1) / (ann_rate * (Math.pow(1 + ann_rate, periods)));
+	      var payment = loan_amt / D;
+	      
+	      var table = document.getElementById("Breakdown");
+	      for(var i = 1; i <= periods; i++){
+	        var row = table.insertRow(i);
+	        var interest = loan_amt * ann_rate;
+	        for(var j = 0; j < 6; j++){
+	          var cell = row.insertCell(j);
+	          switch(j){
+	            case 0:
+	              cell.innerHTML = "$" + loan_amt.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+	              break;
+	            case 1:
+	              cell.innerHTML = "$" + payment.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+	              break;
+	            case 2:
+	              cell.innerHTML = "$" + interest.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+	              break;
+	            case 3:
+	              cell.innerHTML = "$" + (payment - interest).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+	              break;
+	            case 4:
+	              loan_amt -= (payment - interest);
+	              cell.innerHTML = "$" + loan_amt.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+	              break;
+	            case 5:
+	              cell.innerHTML = i;
+	              break;
+	            default:
+	              cell.innerHTML = payment;
+	              break;
+	          }
+	        }
+	      }
+	      
+	      //var row = table.insertRow(1);
+	      //var cell1 = row.insertCell(0);
+	      //cell1.innerHTML = "hi";
+	    }
+	  }
+	</script>
+</head>
+<body>
+		<nav>
+		<table class = "nav">
+			<tr>
+				<td>
+				  <a href = "index.html">
+				    <img src="images/home_icon.png" style= "width: 100px; height: 100px;" alt="home button" />
+				  </a>
+				</td>
+				<td><a href = "payment.html">PAYMENT</a></td>
+				<td><a href = "employment.html">EMPLOYMENT</a></td>
+			</tr>
+		</table>
+	</nav>
+	<hr />
+	
+	<form>
+	  <fieldset>
+	    <legend>
+	      Payment info:
+	    </legend>
+	    <table style="width:100%" class="data">
+	      <tr>
+	        <th style="text-align: center;">Loan Amount:</th>
+	        <th>Annual Interest Rate:</th>
+	        <th>Loan Term (Years):</th>
+	      </tr>
+	      <tr>
+	        <td><input type="number"; id="initLoanAmt" /></td>
+	        <td><input type="number"; id = "annIntRate" /></td>
+	        <td><input type = "number"; id = "loanYears" /></td>
+	      </tr>
+	      <tr>
+	        <td style="float: left;"><button type = "button" onClick = "myFunction()">Submit</button></td>
+	      </tr>
+	    </table>
+	  </fieldset>
+	</form>
+	
+	<fieldset>
+	  <legend>Breakdown:</legend>
+	  <table style = "width:100%;" id="Breakdown" class = "breakdown">
+	    <tr>
+	      <th>Beg. Balance</th>
+	      <th>Payment</th>
+	      <th>Interest</th>
+	      <th>Principal</th>
+	      <th>Balance</th>
+	      <th>Period</th>
+	    </tr>
+	  </table>
+	</fieldset>
+	
+	
+	<hr />
+	<footer>
+		&copy;Mitchell Reyes
+	</footer>
+</body>
+</html>
