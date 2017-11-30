@@ -1,0 +1,36 @@
+body{
+  margin: 0px;
+  padding: 0px;
+}
+
+.nav{
+  width:100%;
+  border: 1px solid black;
+  background-color: #0B0C10;
+  table-layout: fixed;
+}
+
+.nav td{
+  text-align: center;
+  font-size: 30px;
+  font-family: Impact, Charcoal, sans-serif;
+  font-weight: bold;
+  width: 100%;
+}
+
+.nav td a{
+  text-decoration: none;
+}
+
+.nav a:link{
+    color: #07AEDA;
+}
+
+.nav a:visited{
+    color: #07AEDA;
+}
+
+.nav a:hover{
+    color: #64C9E1;
+}
+

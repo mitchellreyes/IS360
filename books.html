@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Assignment 6</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+    </script>
+
+    <script type="text/javascript">
+
+
+        function DoWorkGetBooksAjaxSynchronous() {
+      
+
+            // The base URL for yql.
+            var yql_base_uri = "http://query.yahooapis.com/v1/public/yql?q=";
+
+            //
+            // Create a YQL query to get a stock quote.
+            // the query returns a structured XML document
+            //
+
+            var q = document.getElementById("q").value.toString();
+            var maxResults = parseInt(document.getElementById("maxResults").value);
+
+            //var yql_query = "SELECT * FROM google.books WHERE q='beer' AND maxResults=3 &env=store://datatables.org/alltableswithkeys";
+            var yql_query = "SELECT * FROM google.books WHERE q=" + "'" + q + "'";
+            yql_query += " AND maxResults=" + maxResults + " startIndex= 2";
+
+            //y ql_query = "SELECT * from geo.places WHERE text='SFO'";
+            // We are going to use the GET method so the querystring is passed in the URL.
+            // This is what YQL expected. Open and send the request (synchronous)
+
+            var req = new XMLHttpRequest();
+            req.open("GET", yql_base_uri + yql_query, false);
+            req.send();
+
+            // We get here when the synchronous call finishes. req.send() will block until
+            // the request completes.
+            var MyText = req.responseText;
+            var doc = req.responseXML;
+
+            txtOutput = document.getElementById("txtXMLAsText");
+            txtOutput.innerHTML = MyText;
+
+            var resultTable = document.getElementById("result");
+            resultTable.innerHTML = "";
+            row = resultTable.insertRow(0);
+
+            cell = row.insertCell(0);
+            cell.innerHTML = "Title";
+
+            cell = row.insertCell(1);
+            cell.innerHTML = "Subtitle";
+
+            cell = row.insertCell(2);
+            cell.innerHTML = "Description";
+
+
+            nodeList = doc.getElementsByTagName("items");
+
+            for (var item = 0, tableRow = 1; item < nodeList.length; item++, tableRow++)
+            {
+                book = nodeList[item].childNodes[4];
+
+                title = "";
+                subtitle = "";
+                description = "";
+
+                for(var child = 0; child < book.childNodes.length; child++)
+                {
+                  if(book.childNodes[child].nodeName == "title")
+                    title = book.childNodes[child].childNodes[0].nodeValue;
+
+                  if(book.childNodes[child].nodeName == "subtitle")
+                    subtitle = book.childNodes[child].childNodes[0].nodeValue;
+
+                  if(book.childNodes[child].nodeName == "description")
+                    description = book.childNodes[child].childNodes[0].nodeValue;
+
+                }
+
+                row = resultTable.insertRow(tableRow);
+
+                cell = row.insertCell(0);
+                cell.innerHTML = title;
+
+                cell = row.insertCell(1);
+                cell.innerHTML = subtitle;
+
+                cell = row.insertCell(2);
+                cell.innerHTML = description;
+
+            }
+
+
+
+        }
+    </script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#btnGetQuoteJQuery").click(function () {
+                alert("help");
+            });
+        });
+
+
+    </script>
+  </head>
+  <body>
+    <nav>
+      <table class = "nav">
+        <tr>
+          <td style="float: left;"><a href="index.html"><img src="images/home_button.png" alt = "home button" style = "width:75px; height:75px;"/></a></td>
+          <td><a href= "books.html">BOOKS</a></td>
+          <td><a href= "testData.html">TEST DATA</a></td>
+        </tr>
+      </table>
+    </nav>
+    <hr />
+    
+    <form action="StockQuote.html" method="get">
+      <div id="div1"></div>
+
+
+      <table>
+          <tr>
+              <td>q</td>
+              <td><input type="text" id="q" value="beer" /></td>
+          </tr>
+          <tr>
+              <td>Max results</td>
+              <td><input type="number" id="maxResults" value="3" /></td>
+          </tr>
+      </table>
+  
+      <button id="btnGetBooksAjaxSynchronous" type="button" value="Get Books"
+              onclick="DoWorkGetBooksAjaxSynchronous()">
+          Get Books
+      </button>
+
+
+
+
+      <br /><br />
+      <textarea style="width:600px" id="txtXMLAsText" rows="50" cols="200"></textarea>
+
+      <br /><br />
+
+    
+      <table id="result" border="1"></table>
+    
+      
+
+  </form>
+    <hr />
+    <footer>
+      <p>&copy; Mitchell Reyes</p>
+    </footer>
+  </body>
+</html>
