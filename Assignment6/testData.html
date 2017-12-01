@@ -63,27 +63,36 @@
 		};
 		print_json.key_queue = new Queue();
 		print_json.val_queue = new Queue();
-		function print_json(json_pack){
+		function print_json(json_pack, printer){
 			var i = 0;
 			for(var key in json_pack){
 				if(typeof(json_pack[key]) == 'object'){
-					print_json(json_pack[key]);
+					print_json(json_pack[key], printer);
 				}else{
-					//var row = table.insertRow(i);
-					//var cell = row.insertCell(i);
-					//cell.innerHTML = key + " = " + json_pack[key]
-					//i+=1;
-					//console.log(key + "=" + json_pack[key]);
 					print_json.key_queue.enqueue(key);
 					print_json.val_queue.enqueue(json_pack[key]);
 				}
 			}
-			//console.log(print_json.key_queue.get(1));
-			var table = document.getElementById("task_2");
-			var row = table.insertRow(0);
-			for(var j = 0; j < print_json.key_queue.length; j++){
-				var cell = row.insertCell(j);
-				cell.innerHTML = print_json.key_queue.get(j).toString();
+			if(printer == 1){
+				var table = document.getElementById("task_2");
+				var row = table.insertRow(0);
+				for(var j = 0; j < print_json.key_queue.length(); j++){
+					var cell = row.insertCell(j);
+					cell.innerHTML = print_json.key_queue.get(j).toString();
+				}
+				var row = table.insertRow(1);
+				for(var j = 0; j < print_json.key_queue.length(); j++){
+					var cell = row.insertCell(j);
+					cell.innerHTML = print_json.val_queue.get(j).toString();
+				}
+			}else{
+				var table = document.getElementById("task_3");
+				for(var i = 0; i < print_json.key_queue.length(); i++){
+					var row = table.insertRow(i);
+					var cell = row.insertCell(0);
+					cell.innerHTML = print_json.val_queue.get(i).toString();
+
+				}
 			}
 		}
 		function myOtherFunction(){
@@ -96,13 +105,27 @@
 				var i;
 				for(i = 0; i < data.length; i++){
 					if(data[i]["id"] == desired_id){
-						print_json(data[i]);
-						
+						print_json(data[i], 1);
 						break;
 					}
 				}
 				if(i == data.length){
 					console.log("no one found");
+				}
+			});
+		}
+
+		function myOtherFunction2(){
+			var root = "https://jsonplaceholder.typicode.com";
+			var desired_id = document.getElementById("id_select2").value;
+			$.ajax({
+				url: root + '/posts/' + desired_id + '/comments',
+				method: 'GET'
+			}).then(function(data) {
+				var i;
+				var table = document.getElementById("task_3");
+				for(i = 0; i < data.length; i++){
+					print_json(data, 2);
 				}
 			});
 		}
@@ -143,6 +166,21 @@
 			<table id = "task_2" class="table1"></table>
 		</fieldset>
 	</form>
+
+	<br /><br />
+	
+	<form>
+		<fieldset>
+			<legend>
+				Comment Selection by ID:
+			</legend>
+			ID: <br />
+			<input type="number"; id="id_select2" /><br />
+			<input type="button"; onclick = "myOtherFunction2()"; value="SUBMIT"/>
+			<table id = "task_3" class="table1"></table>
+		</fieldset>
+	</form>
+
     <hr />
     <footer>
       <p>&copy; Mitchell Reyes</p>
