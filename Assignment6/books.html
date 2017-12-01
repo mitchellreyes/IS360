@@ -15,21 +15,12 @@
             // The base URL for yql.
             var yql_base_uri = "http://query.yahooapis.com/v1/public/yql?q=";
 
-            //
-            // Create a YQL query to get a stock quote.
-            // the query returns a structured XML document
-            //
 
             var q = document.getElementById("q").value.toString();
             var maxResults = parseInt(document.getElementById("maxResults").value);
 
-            //var yql_query = "SELECT * FROM google.books WHERE q='beer' AND maxResults=3 &env=store://datatables.org/alltableswithkeys";
             var yql_query = "SELECT * FROM google.books WHERE q=" + "'" + q + "'";
-            yql_query += " AND maxResults=" + maxResults + " startIndex= 2";
-
-            //y ql_query = "SELECT * from geo.places WHERE text='SFO'";
-            // We are going to use the GET method so the querystring is passed in the URL.
-            // This is what YQL expected. Open and send the request (synchronous)
+            yql_query += " AND maxResults=" + maxResults + " &env=store://datatables.org/alltableswithkeys";
 
             var req = new XMLHttpRequest();
             req.open("GET", yql_base_uri + yql_query, false);
@@ -40,8 +31,8 @@
             var MyText = req.responseText;
             var doc = req.responseXML;
 
-            txtOutput = document.getElementById("txtXMLAsText");
-            txtOutput.innerHTML = MyText;
+            //txtOutput = document.getElementById("txtXMLAsText");
+            //txtOutput.innerHTML = MyText;
 
             var resultTable = document.getElementById("result");
             resultTable.innerHTML = "";
@@ -97,17 +88,6 @@
 
         }
     </script>
-
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-            $("#btnGetQuoteJQuery").click(function () {
-                alert("help");
-            });
-        });
-
-
-    </script>
   </head>
   <body>
     <nav>
@@ -144,10 +124,7 @@
 
 
 
-      <br /><br />
-      <textarea style="width:600px" id="txtXMLAsText" rows="50" cols="200"></textarea>
-
-      <br /><br />
+      
 
     
       <table id="result" border="1"></table>

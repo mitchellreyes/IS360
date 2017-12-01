@@ -34,3 +34,30 @@ body{
     color: #64C9E1;
 }
 
+.table1{
+	width: 75%;
+	border-collapse: collapse;
+	table-layout: fixed;
+	margin: auto;
+}
+
+.table1 th{
+	padding: 15px;
+	background-color: #0B0C10;
+	text-align: center;
+	border: 1px solid white;
+	color: #07AEDA;
+	font-family: Impact, Charcoal, sans-serif;
+}
+
+.table1 td{
+	padding: 5px;
+}
+
+.table1 table, .table1 td{
+	width: 100%;
+	text-align: center;
+	border: 1px solid black;
+	font-family: Impact, Charcoal, sans-serif;
+}
+

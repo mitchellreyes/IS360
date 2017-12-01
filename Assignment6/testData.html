@@ -3,6 +3,74 @@
   <head>
     <title>Assignment 6</title>
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	 <script type="text/javascript">
+		function myFunction(){
+			var root = "https://jsonplaceholder.typicode.com";
+			$.ajax({
+				url: root + '/users',
+				method: 'GET'
+			}).then(function(data) {
+				
+				var table = document.getElementById("task_1");
+				for(var i = 1; i <= data.length; i++){
+					var row = table.insertRow(i);
+					for(var j = 0; j < 3; j++){
+						var cell = row.insertCell(j);
+						switch(j){
+							case 0:
+								cell.innerHTML = data[i - 1]["id"];
+								break;
+							case 1:
+								cell.innerHTML = data[i - 1]["name"];
+								break;
+							case 2:
+								cell.innerHTML = data[i - 1]["email"];
+								break;
+							default:
+								cell.innerHTML = "undefined";
+								break;
+						}
+					}
+				}
+			});
+		}
+		
+		function print_json(json_pack){
+			var table = document.getElementById("task_2");
+			for(var key in json_pack){
+				if(typeof(json_pack[key]) == 'object'){
+					print_json(json_pack[key]);
+				}else{
+					var row = table.insertRow(print_json.i);
+					var cell = row.insertCell(print_json.i);
+					cell.innerHTML = key + " = " + json_pack[key]
+					//console.log(key + "=" + json_pack[key]);
+				}
+			}
+		}
+		print_json.i = 0;
+		function myOtherFunction(){
+			var root = "https://jsonplaceholder.typicode.com";
+			var desired_id = document.getElementById("id_select").value;
+			$.ajax({
+				url: root + '/users',
+				method: 'GET'
+			}).then(function(data) {
+				var i;
+				for(i = 0; i < data.length; i++){
+					if(data[i]["id"] == desired_id){
+						print_json(data[i]);
+						
+						break;
+					}
+				}
+				if(i == data.length){
+					console.log("no one found");
+				}
+			});
+		}
+	 </script>
   </head>
   <body>
     <nav>
@@ -15,6 +83,29 @@
       </table>
     </nav>
     <hr />
+	
+	<button onClick = "myFunction()">Get All Users</button>
+	
+	<table id = "task_1" class="table1">
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Email</th>
+		</tr>
+	</table>
+	<br /><br />
+	
+	<form>
+		<fieldset>
+			<legend>
+				ID Selection:
+			</legend>
+			ID: <br />
+			<input type="number"; id="id_select" /><br />
+			<input type="button"; onclick = "myOtherFunction()"; value="SUBMIT"/>
+			<table id = "task_2" class="table1"></table>
+		</fieldset>
+	</form>
     <hr />
     <footer>
       <p>&copy; Mitchell Reyes</p>
