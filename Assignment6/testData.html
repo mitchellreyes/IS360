@@ -8,24 +8,27 @@
 		function myFunction(){
 			var root = "https://jsonplaceholder.typicode.com";
 			$.ajax({
-				url: root + '/users',
+				url: root + '/posts',
 				method: 'GET'
 			}).then(function(data) {
 				
 				var table = document.getElementById("task_1");
 				for(var i = 1; i <= data.length; i++){
 					var row = table.insertRow(i);
-					for(var j = 0; j < 3; j++){
+					for(var j = 0; j < 4; j++){
 						var cell = row.insertCell(j);
 						switch(j){
 							case 0:
-								cell.innerHTML = data[i - 1]["id"];
+								cell.innerHTML = data[i - 1]["userId"];
 								break;
 							case 1:
-								cell.innerHTML = data[i - 1]["name"];
+								cell.innerHTML = data[i - 1]["id"];
 								break;
 							case 2:
-								cell.innerHTML = data[i - 1]["email"];
+								cell.innerHTML = data[i - 1]["title"];
+								break;
+							case 3:
+								cell.innerHTML = data[i - 1]["body"];
 								break;
 							default:
 								cell.innerHTML = "undefined";
@@ -36,25 +39,58 @@
 			});
 		}
 		
+		function Queue() {
+		  this.queue = [];
+		}
+
+		Queue.prototype.enqueue = function(value) {
+		  this.queue.push(value);
+		};
+		Queue.prototype.dequeue = function() {
+		  return this.queue.shift();
+		};
+		Queue.prototype.peek = function() {
+		  return this.queue[0];
+		};
+		Queue.prototype.get = function(index){
+			return this.queue[index];
+		}
+		Queue.prototype.length = function() {
+		  return this.queue.length;
+		};
+		Queue.prototype.print = function() {
+		  console.log(this.queue.join(' '));
+		};
+		print_json.key_queue = new Queue();
+		print_json.val_queue = new Queue();
 		function print_json(json_pack){
-			var table = document.getElementById("task_2");
+			var i = 0;
 			for(var key in json_pack){
 				if(typeof(json_pack[key]) == 'object'){
 					print_json(json_pack[key]);
 				}else{
-					var row = table.insertRow(print_json.i);
-					var cell = row.insertCell(print_json.i);
-					cell.innerHTML = key + " = " + json_pack[key]
+					//var row = table.insertRow(i);
+					//var cell = row.insertCell(i);
+					//cell.innerHTML = key + " = " + json_pack[key]
+					//i+=1;
 					//console.log(key + "=" + json_pack[key]);
+					print_json.key_queue.enqueue(key);
+					print_json.val_queue.enqueue(json_pack[key]);
 				}
 			}
+			//console.log(print_json.key_queue.get(1));
+			var table = document.getElementById("task_2");
+			var row = table.insertRow(0);
+			for(var j = 0; j < print_json.key_queue.length; j++){
+				var cell = row.insertCell(j);
+				cell.innerHTML = print_json.key_queue.get(j).toString();
+			}
 		}
-		print_json.i = 0;
 		function myOtherFunction(){
 			var root = "https://jsonplaceholder.typicode.com";
 			var desired_id = document.getElementById("id_select").value;
 			$.ajax({
-				url: root + '/users',
+				url: root + '/posts',
 				method: 'GET'
 			}).then(function(data) {
 				var i;
@@ -88,9 +124,10 @@
 	
 	<table id = "task_1" class="table1">
 		<tr>
+			<th>User ID</th>
 			<th>ID</th>
-			<th>Name</th>
-			<th>Email</th>
+			<th>Title</th>
+			<th>Body</th>
 		</tr>
 	</table>
 	<br /><br />

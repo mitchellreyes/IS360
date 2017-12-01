@@ -13,7 +13,7 @@ body{
 .nav td{
   text-align: center;
   font-size: 30px;
-  font-family: Impact, Charcoal, sans-serif;
+  font-family: Arial, Times New Roman, sans-serif;
   font-weight: bold;
   width: 100%;
 }
@@ -47,7 +47,7 @@ body{
 	text-align: center;
 	border: 1px solid white;
 	color: #07AEDA;
-	font-family: Impact, Charcoal, sans-serif;
+	font-family: Arial, Times New Roman, sans-serif;
 }
 
 .table1 td{
@@ -58,6 +58,6 @@ body{
 	width: 100%;
 	text-align: center;
 	border: 1px solid black;
-	font-family: Impact, Charcoal, sans-serif;
+	font-family: Arial, Times New Roman, sans-serif;
 }
 
